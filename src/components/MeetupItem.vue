@@ -1,12 +1,12 @@
 <template>
-  <div  class="column is-one-third">
+  <div class="column is-one-third">
     <!-- <router-link :to="'/meetups/' + meetup._id" class="card large"> -->
     <div class="card large">
       <router-link :to="{name: 'PageMeetupDetail', params: {id: meetup._id}}" class="card-meetup-link" >
         <div class="card-image">
           <figure class="image is-4by3">
               <!-- get here meetup image -->
-              <img :src="meetup.image">
+              <img :src="meetup.image" alt="Image">
           </figure>
         </div>
         <div class="card-content">
@@ -14,14 +14,14 @@
             <div class="media-left">
               <div class="level-item has-text-centered">
                 <div>
-                  <!-- get here meetup startDate -->
+                  <!-- get here startDate, don't worry about formatting -->
                   <p class="title">{{meetup.startDate | formatDate('MMM')}}</p>
                   <p class="title">{{meetup.startDate | formatDate('D')}}</p>
                 </div>
               </div>
             </div>
             <div class="media-content">
-                <!-- get here meetup title -->
+              <!-- get here meetup title -->
                 <p class="title is-4 no-padding is-marginless">{{meetup.title}}</p>
                 <!-- get here meetup category -->
                 <span class="tag is-success">{{meetup.category.name}}</span>
@@ -41,14 +41,14 @@
 </template>
 
 <script>
-export default {
-  props: {
-    meetup: {
-      required: true,
-      type: Object
+  export default {
+    props: {
+      meetup: {
+        required: true,
+        type: Object
+      }
     }
   }
-}
 </script>
 
 <style scoped>
@@ -56,4 +56,3 @@ export default {
     color: black;
   }
 </style>
-

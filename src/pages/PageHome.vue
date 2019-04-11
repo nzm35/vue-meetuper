@@ -7,34 +7,30 @@
         <h1 class="title is-inline">Featured Meetups in "Location"</h1>
         <AppDropdown />
         <button class="button is-primary is-pulled-right m-r-sm">Create Meetups</button>
-        <router-link  :to="{name: 'PageMeetupFind'}" 
-                      class="button is-primary is-pulled-right m-r-sm">
-          All
+        <router-link :to="{name: 'PageMeetupFind'}"
+                     class="button is-primary is-pulled-right m-r-sm">
+                   All
         </router-link>
       </div>
       <div class="row columns is-multiline">
-        <!-- Iterate your meetups here -->
+        <!-- Iterate your meetups here! -->
         <MeetupItem v-for="meetup in meetups"
                     :key="meetup._id"
-                    :meetup="meetup"/>
-
-
+                    :meetup="meetup" />
       </div>
       </section>
       <section class="section">
         <div>
           <h1 class="title">Categories</h1>
           <div class="columns cover is-multiline is-mobile">
-            <!-- CategoryItem -->
             <CategoryItem v-for="category in categories"
                           :key="category._id"
-                          :category="category"/>
-      
+                          :category="category" />
           </div>
         </div>
       </section>
     </div>
-    <div v-else>
+    <div v-else class="container">
       <AppSpinner />
     </div>
   </div>
@@ -44,52 +40,30 @@
   import CategoryItem from '@/components/CategoryItem'
   import MeetupItem from '@/components/MeetupItem'
   import { mapActions, mapState } from 'vuex'
-  import pageLoader from '@/mixin/pageLoader'
-
+  import pageLoader from '@/mixins/pageLoader'
   export default {
     components: {
       CategoryItem,
       MeetupItem
     },
-    data () {
-      return {
-        isDataLoaded: false
-      }
-    },
     mixins: [pageLoader],
     computed: {
-      // meetups () {
-      //   return this.$store.state.meetups
-      // }, 
-      // categories () {
-      //   return this.$store.state.categories
-      // }, 
-      ...mapState ({
-        meetups: (state) => state.meetups.items,
-        categories: (state) => state.categories.items,
+      ...mapState({
+        meetups: state => state.meetups.items,
+        categories: state => state.categories.items
       })
     },
     created () {
-      // this.$store.dispatch('fetchMeetups'),
-      // this.$store.dispatch('fetchCategories')
-
-      Promise.all([this.fetchMeetups(),this.fetchCategories()])
+      Promise.all([this.fetchMeetups(), this.fetchCategories()])
         .then(() => this.pageLoader_resolveData())
         .catch((err) => {
           console.error(err)
           this.pageLoader_resolveData()
         })
-      // this.fetchMeetups()
-      //   .then(() => {
-      //     return this.fetchCategories()
-      //   })
-      //   .then(() => {
-      //     this.isDataLoaded = true
-      //   })
-    }, 
+    },
     methods: {
-      ...mapActions('meetups',['fetchMeetups']),
-      ...mapActions('categories',['fetchCategories'])
+      ...mapActions('meetups', ['fetchMeetups']),
+      ...mapActions('categories', ['fetchCategories'])
     }
   }
 </script>

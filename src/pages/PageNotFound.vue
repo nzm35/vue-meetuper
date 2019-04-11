@@ -4,7 +4,6 @@
                :status="404"
                :navigateToPage="'PageHome'"
                :navigateToText="'Navigate back Home'" />
- 
   </div>
 </template>
 

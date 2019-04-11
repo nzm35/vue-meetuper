@@ -14,7 +14,8 @@ import PageNotAuthenticated from '@/pages/PageNotAuthenticated'
 Vue.use(Router)
 
 const router = new Router({
-  routes: [{
+  routes: [
+    {
       path: '/',
       name: 'PageHome',
       component: PageHome
@@ -28,9 +29,7 @@ const router = new Router({
       path: '/meetups/secret',
       name: 'PageSecret',
       component: PageSecret,
-      meta: {
-        onlyAuthUser: true
-      }
+      meta: {onlyAuthUser: true}
     },
     {
       path: '/meetups/:id',
@@ -41,17 +40,13 @@ const router = new Router({
       path: '/login',
       name: 'PageLogin',
       component: PageLogin,
-      meta: {
-        onlyGuestUser: true
-      }
+      meta: { onlyGuestUser: true }
     },
     {
       path: '/register',
       name: 'PageRegister',
       component: PageRegister,
-      meta: {
-        onlyGuestUser: true
-      }
+      meta: { onlyGuestUser: true }
     },
     {
       path: '/401',
@@ -77,15 +72,11 @@ router.beforeEach((to, from, next) => {
         if (isAuthenticated) {
           next()
         } else {
-          next({
-            name: 'PageNotAuthenticated'
-          })
+          next({name: 'PageNotAuthenticated'})
         }
       } else if (to.meta.onlyGuestUser) {
         if (isAuthenticated) {
-          next({
-            name: 'PageHome'
-          })
+          next({name: 'PageHome'})
         } else {
           next()
         }

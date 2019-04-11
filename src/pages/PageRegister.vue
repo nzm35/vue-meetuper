@@ -18,9 +18,8 @@
                          type="text"
                          placeholder="Username">
                   <div v-if="$v.form.username.$error" class="form-error">
-                    <span v-if="!$v.form.username.required" class="help is-danger">Username is required.</span>
+                    <span v-if="!$v.form.username.required" class="help is-danger">Username is required</span>
                   </div>
-
                 </div>
               </div>
               <div class="field">
@@ -31,7 +30,7 @@
                          type="text"
                          placeholder="Name">
                   <div v-if="$v.form.name.$error" class="form-error">
-                    <span v-if="!$v.form.name.required" class="help is-danger">Name is required.</span>
+                    <span v-if="!$v.form.name.required" class="help is-danger">Name is required</span>
                   </div>
                 </div>
               </div>
@@ -43,8 +42,8 @@
                          type="email"
                          placeholder="Your Email">
                   <div v-if="$v.form.email.$error" class="form-error">
-                    <span v-if="!$v.form.email.required" class="help is-danger">Email is required.</span>
-                    <span v-if="!$v.form.email.email" class="help is-danger">Email Address is not valid.</span>
+                    <span v-if="!$v.form.email.required" class="help is-danger">Email is required</span>
+                    <span v-if="!$v.form.email.email" class="help is-danger">Email address is not valid</span>
                   </div>
                 </div>
               </div>
@@ -56,8 +55,10 @@
                          type="text"
                          placeholder="Avatar"
                          autocomplete="">
-                  <span v-if="!$v.form.avatar.url" class="help is-danger">URL format is not valid!</span>
-                  <span v-if="!$v.form.avatar.supportedFileType" class="help is-danger">Selected file type is not valid.</span>
+                  <div v-if="$v.form.avatar.$error" class="form-error">
+                    <span v-if="!$v.form.avatar.url" class="help is-danger">Url format is not valid!</span>
+                    <span v-if="!$v.form.avatar.supportedFileType" class="help is-danger">Selected file type is not valid!</span>
+                  </div>
                 </div>
               </div>
               <div class="field">
@@ -69,7 +70,7 @@
                          placeholder="Your Password"
                          autocomplete="new-password">
                   <div v-if="$v.form.password.$error" class="form-error">
-                    <span v-if="!$v.form.password.required" class="help is-danger">Password is required.</span>
+                    <span v-if="!$v.form.password.required" class="help is-danger">Password is required</span>
                     <span v-if="!$v.form.password.minLength" class="help is-danger">Password minimum length is 6 letters</span>
                   </div>
                 </div>
@@ -83,19 +84,16 @@
                          placeholder="Password Confirmation"
                          autocomplete="off">
                   <div v-if="$v.form.passwordConfirmation.$error" class="form-error">
-                    <span v-if="!$v.form.passwordConfirmation.required" class="help is-danger">Password Confirmation is required.</span>
-                    <span v-if="!$v.form.password.sameAsPassword" class="help is-danger">Password Confirmation should be the same as password.</span>
+                    <span v-if="!$v.form.passwordConfirmation.required" class="help is-danger">Password is required</span>
+                    <span v-if="!$v.form.passwordConfirmation.sameAsPassword" class="help is-danger">Password confirmation should be the same as password</span>
                   </div>
                 </div>
               </div>
-              <button @click.prevent="register" 
-                      :disabled="isFormInvalid"
-                      type="submit" 
-                      class="button is-block is-info is-large is-fullwidth">Register</button>
+              <button @click.prevent="register" type="submit" class="button is-block is-info is-large is-fullwidth">Register</button>
             </form>
           </div>
           <p class="has-text-grey">
-            <router-link :to="{name: 'PageLogin'}" >Login</router-link> &nbsp;·&nbsp;
+            <router-link :to="{name:'PageLogin'}">Login</router-link> &nbsp;·&nbsp;
             <a>Sign Up With Google</a> &nbsp;·&nbsp;
             <a href="../">Need Help?</a>
           </p>
@@ -113,10 +111,10 @@
       return {
         form: {
           username: null,
-          name: null, 
+          name: null,
           email: null,
-          avatar: null, 
-          password: null, 
+          avatar: null,
+          password: null,
           passwordConfirmation: null
         }
       }
@@ -124,10 +122,10 @@
     validations: {
       form: {
         username: {
-          required
+          // required
         },
         name: {
-          required
+          // required
         },
         email: {
           required,
@@ -138,26 +136,23 @@
           supportedFileType
         },
         password: {
-          required, 
+          required,
           minLength: minLength(6)
         },
         passwordConfirmation: {
-          required, 
-          sameAsPassword:  sameAs('password')
+          required,
+          sameAsPassword: sameAs('password')
         }
       }
     },
-    computed: {
-      isFormInvalid() {
-        return this.$v.form.$invalid
-      }
-    },
     methods: {
-      register() {
-        this.$v.form.$touch
+      register () {
+        this.$v.form.$touch()
         this.$store.dispatch('auth/registerUser', this.form)
           .then(() => this.$router.push('/login'))
-          .catch(err => console.log(err))
+          .catch(errMessage => {
+            this.$toasted.error(errMessage, {duration: 5000})
+          })
       }
     }
   }

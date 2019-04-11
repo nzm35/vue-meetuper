@@ -6,36 +6,14 @@ export default {
   state: {
     items: []
   },
-  getters: {
-
-  },
   actions: {
-    fetchThreads({
-      state,
-      commit
-    }, meetupId) {
-      commit('setItems', {
-        resource: 'threads',
-        items: {}
-      },
-      {
-        root: true
-      })
+    fetchThreads ({state, commit}, meetupId) {
       return axios.get(`/api/v1/threads?meetupId=${meetupId}`)
         .then(res => {
           const threads = res.data
-          commit('setItems', {
-            resource: 'threads',
-            items: threads
-          },
-          {
-            root: true
-          })
+          commit('setItems', {resource: 'threads', items: threads}, {root: true})
           return state.items
         })
     }
-  },
-  mutations: {
-
   }
 }

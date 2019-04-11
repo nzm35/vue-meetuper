@@ -85,6 +85,7 @@
     background-position: 50% 20%;
     border: 1px solid rgba(0,0,0,.12);
     -webkit-tap-highlight-color: transparent;
+
     &-interest {
       position: absolute;
       bottom: 12px;
@@ -93,24 +94,30 @@
         font-weight: bold;
       }
     }
+
     .title {
       color: white;
     }
+
     .subtitle {
       color: white;
     }
+
     &-content {
       &-date {
         margin: 10px;
+
         width: 70px;
         text-align: center;
         border-radius: 50%;
+
         .day {
           display: block;
           font-size: 21px;
           color: white;
           font-weight: bold;
         }
+
         .month {
           display: block;
           color: #ff5050;
@@ -119,6 +126,7 @@
           margin-bottom: -5px;
         }
       }
+
       &-info {
         position: absolute;
         bottom: 0;
@@ -128,6 +136,7 @@
       }
     }
   }
+
   .text-overlay-wrapper {
     position: absolute;
     width: 100%;
@@ -135,9 +144,11 @@
     left: 0;
     top: 0;
   }
+
   .lookup-prebody {
     position: relative;
   }
+
   .meetup-lookup {
     width: 960px;
     margin: 0 auto;
@@ -145,6 +156,7 @@
     padding: 20px;
     color: white;
   }
+
   .meetup-lookup-wrap {
     width: 100%;
     z-index: 2;

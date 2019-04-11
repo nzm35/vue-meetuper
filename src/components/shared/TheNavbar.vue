@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <router-link :to="'/'" class="navbar-item" href="/">
+      <router-link :to="'/'" class="navbar-item" href="https://bulma.io">
         <h1 class="title is-4">VueMeetuper</h1>
       </router-link>
       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -47,7 +47,7 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div v-if="user">
-            Welcome {{user.username}}
+            Welcome {{user.name}}
           </div>
         </div>
         <div v-if="user" class="navbar-item has-dropdown is-hoverable">
@@ -59,8 +59,7 @@
                 Profile
             </a>
             <hr class="navbar-divider">
-            <a @click.prevent="logout" 
-               class="navbar-item">
+            <a @click.prevent="logout" class="navbar-item">
                 Logout
             </a>
           </div>
@@ -74,7 +73,7 @@
               Log in
             </router-link>
           </div>
-</div>
+        </div>
       </div>
     </div>
   </nav>
@@ -98,3 +97,13 @@
 
 <style scoped>
 </style>
+
+
+
+
+
+
+
+
+
+

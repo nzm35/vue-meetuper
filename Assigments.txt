@@ -1,0 +1,92 @@
+
+
+###1### Assignment
+1. Iterate categories and display each individual category
+2. Replace harcoded image and name with data of category
+BONUS
+1. Create New Component in Components folder named CategoryItem.vue
+2. Move category template from PageHome to CategoryItem
+3. Iterate CategoryItem and provide to each CategoryItem "category"
+   as a prop
+
+
+###2### Assignment
+1. Iterate meetups and display each individual meetup
+2. Replace harcoded image, startDate, title, category name, location, description
+BONUS
+1. Create New Component in Components folder named MeetupItem.vue
+2. Move meetup template from PageHome to MeetupItem
+3. Iterate MeetupItem and provide to each MeetupItem "meetup"
+   as a prop
+
+
+###3### Assignment
+1. In PageMeetupDetail send get request to "/api/v1/meetups/:meetupId"
+2. Get meetup from res data and assign meetup to meetup defined in components data()
+3. Provide meetup data to PageMeetupDetail
+
+
+###4### Mini Assignment
+1. Fix links in the navbar so name of our application and home link are pointing to our actual home page (:
+
+
+####5#### Assignment
+1. Create new route of path '/find' that should navigate to PageMeetupFind
+2. On home page change 'All' and 'Find' link for router-link to navigate to PageMeetupFind
+
+####6#### Assignment
+1. Implement routing to PageRegister and PageLogin
+2. PageRegister path is "/register"
+3. PageLogin path is "/login"
+4. Update Links in navbar
+
+####7#### Assignment
+1. Bind data from inputs to form object
+2. Create "login" function in PageLogin
+3. When form is submitted call "login" function and console.log form data
+
+4. Create "register" function in PageRegister
+5. When form is submitted call "register" function and console.log form data
+
+BONUS:
+1. Create new module called "auth"
+2. Register module in store/index.js
+3. Create 2 methods, loginWithEmailAndPassword and registerUser
+4. dispatch these functions in login and register functions and provide formData inside
+5. move console.logs from your login and register to module functions
+
+####8#### Assignment
+1. Provide required validators and blur to register form inputs.
+2. You don't need provide required to avatar
+3. Display also error messages
+
+####9#### Assignment
+1. Create login route of path "/login" similiar to register
+2. Provide login controller to login route
+3. Create simple functionality of login controller
+4. Implement simple response and try route in postman,
+   don't forget to restart your node server/
+
+####10#### Assignment
+1. Finish register user in auth modules
+2. send post request to '/api/v1/users/register'
+3. after succesful register redirect to login page
+4. in case of error just console log error
+
+####11#### Assignment
+1. Create "logout" action in auth module
+2. send post request to '/api/v1/users/logout'
+3. after succesful logout "commit" setAuthUser of null
+4. in case of error just console log error
+
+####12#### Assignment
+1. Create "meta" property "onlyGuestUser" on PageRegister and PageLogin
+   and set it to be true
+2. Add "else if" statement after if "to.meta.onlyAuthUser"
+3. If user is authenticated navigate to home page
+4. If User is not authenticated navigate to requested page
+
+
+
+
+

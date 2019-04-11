@@ -1,9 +1,9 @@
 <template>
   <div v-if="isAuthResolved" id="app">
     <TheNavbar />
-      <div class="page-wrapper">
-        <router-view />
-      </div>
+    <div class="page-wrapper">
+      <router-view />
+    </div>
     <TheFooter />
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
   components: {
     TheNavbar,
     TheFooter
-  }, 
+  },
   computed: {
     isAuthResolved () {
       return this.$store.state.auth.isAuthResolved
@@ -37,7 +37,7 @@ export default {
 }
 
 .page-wrapper {
-  min-height: 60vh;
+  min-height: 55vh;
 }
 
 .bold {

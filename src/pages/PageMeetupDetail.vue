@@ -139,29 +139,21 @@
   import { mapActions, mapState } from 'vuex'
   export default {
     computed: {
-      // meetup () {
-      //   return this.$store.state.meetup
-      // },
-      // threads () {
-      //   return this.$store.state.threads
-      // },
+      ...mapState({
+        meetup: state => state.meetups.item,
+        threads: state => state.threads.items
+      }),
       meetupCreator () {
         return this.meetup.meetupCreator || {}
-      },
-      ...mapState ({
-        meetup: (state) => state.meetups.item,
-        threads: (state) => state.threads.items,
-      })
+      }
     },
     created () {
       const meetupId = this.$route.params.id
-      // this.$store.dispatch('fetchMeetupById', meetupId)
-      // this.$store.dispatch('fetchThreads', meetupId)
       this.fetchMeetupById(meetupId)
       this.fetchThreads(meetupId)
     },
     methods: {
-      ...mapActions('meetups',['fetchMeetupById']),
+      ...mapActions('meetups', ['fetchMeetupById']),
       ...mapActions('threads', ['fetchThreads'])
     }
   }
@@ -171,9 +163,12 @@
   .tag.is-warning {
     opacity: 0.5;
   }
+
   .meetup-detail-page {
     background-color: #f5f5f5;
+
     .mapouter{text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}
+
     .hero-body {
       background-color: white;
       border: 1px solid rgba(46,62,72,.12);
@@ -182,10 +177,12 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-attachment: fixed;
+
         > p,h1,h2, strong {
           color: white;
         }
       }
+
     .meetup-side-box {
       background-color: white;
       border-radius: 10px;
@@ -193,36 +190,47 @@
       padding: 15px;
     }
   }
+
   pre,
   .message {
     max-width: 960px;
   }
+
   .v-center {
     align-items: center;
   }
+
   li {margin: 10px}
+
   .hero.is-primary {
   background: linear-gradient(to top right, #524ad0 10%, #D099FA);
   }
+
   .box {
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
   }
+
   .box span.icon {
     float: right;
     font-size: 1.7em;
     padding: 2rem 2rem 0 0;
   }
+
   .is-large.fab {
     font-size: 7em;
   }
+
   .is-large.fas {
     font-size: 5em;
     margin-left: 0.2em;
   }
+
   .media-content {overflow: hidden;}
+
   .menu-list li a:hover {
     background: #d9d9d9;
   }
+
   .token.number {
     display: inline;
     padding: inherit;
@@ -237,20 +245,24 @@
     margin: inherit;
   }
   .footer {background-color: white;}
+
   // Post Create Input START
   .textarea-post {
     padding-bottom: 30px;
   }
+
   .post-create {
     margin-bottom: 15px;
   }
   // Post Create END
+
   // Thread List START
   .content {
     figure {
       margin-bottom: 0;
     }
   }
+
   .media-content-threads {
     background-color: #f1f1f1;
     padding: 3px 20px;
@@ -258,27 +270,35 @@
     margin-right: 40px;
     width: 100px;
   }
+
   .media-left.user-image {
     margin: 0;
     margin-right: 15px;
   }
+
   .post-item {
+
   }
+
   .media + .media {
     border: none;
     margin-top: 0;
   }
+
   .post-content {
     margin: 0;
     &-message {
       font-size: 16px;
     }
+
     .author {
       font-size: 18px;
     }
+
     .post-time {
       font-size: 16px;
     }
   }
   // Thread List END
 </style>
+
